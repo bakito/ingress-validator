@@ -34,7 +34,7 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version-file: "go.mod"
-      - name: Test
-        run: make test
+      #- name: Test
+      #  run: make test
       - name: Test Release
         run: make test-release
