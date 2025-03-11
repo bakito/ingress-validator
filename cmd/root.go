@@ -31,6 +31,7 @@ var (
 				return err
 			}
 
+			cmd.Printf("Found %d Ingresses\n", len(ingresses.Items))
 			for _, ing := range ingresses.Items {
 				for _, rule := range ing.Spec.Rules {
 					if rule.HTTP != nil {
@@ -41,7 +42,7 @@ var (
 							if path.PathType == nil || *path.PathType != networkingv1.PathTypeImplementationSpecific {
 								if isValid := validPathType.MatchString(path.Path); !isValid {
 									cmd.Printf(
-										"Ingress: %s/%s with host: %s is not valid",
+										"⚠️ Ingress %s/%s with host: %s is not valid\n",
 										ing.GetNamespace(),
 										ing.GetName(),
 										rule.Host,
